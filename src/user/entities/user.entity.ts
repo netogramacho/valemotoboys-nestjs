@@ -1,5 +1,6 @@
 import { IsNotEmpty } from 'class-validator';
 import { Address } from 'src/address/entities/address.entity';
+import { Automobile } from 'src/automobile/entities/automobile.entity';
 import {
   Column,
   Entity,
@@ -10,33 +11,33 @@ import {
   OneToMany,
 } from 'typeorm';
 
-@Entity()
+@Entity('users')
 export class User {
   @PrimaryGeneratedColumn()
   id: string;
 
   @IsNotEmpty()
-  @Column()
+  @Column({ nullable: false })
   nome: string;
 
   @IsNotEmpty()
-  @Column()
+  @Column({ unique: true, nullable: false })
   telefone: string;
 
   @IsNotEmpty()
-  @Column()
+  @Column({ nullable: false })
   telefoneParente: string;
 
   @IsNotEmpty()
-  @Column()
+  @Column({ nullable: false })
   cnh: string;
 
   @IsNotEmpty()
-  @Column()
+  @Column({ nullable: false })
   adm: string;
 
   @IsNotEmpty()
-  @Column()
+  @Column({ nullable: false })
   indicacao: string;
 
   @IsNotEmpty()
@@ -44,7 +45,7 @@ export class User {
   fotoDocumento: string;
 
   @IsNotEmpty()
-  @Column()
+  @Column({ default: 1 })
   ativo: number;
 
   @CreateDateColumn()
@@ -58,4 +59,7 @@ export class User {
 
   @OneToMany(() => Address, (address) => address.user)
   addresses: Address[];
+
+  @OneToMany(() => Automobile, (automobile) => automobile.user)
+  automobiles: Address[];
 }

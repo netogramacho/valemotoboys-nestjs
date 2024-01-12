@@ -5,6 +5,8 @@ import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './user/user.module';
 import { AddressModule } from './address/address.module';
+import { AutomobileModule } from './automobile/automobile.module';
+import { MulterModule } from '@nestjs/platform-express';
 
 @Module({
   imports: [
@@ -18,8 +20,10 @@ import { AddressModule } from './address/address.module';
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     } as TypeOrmModuleOptions),
+    MulterModule.register({ dest: '/uploads' }),
     UserModule,
     AddressModule,
+    AutomobileModule,
   ],
   controllers: [AppController],
   providers: [AppService],
