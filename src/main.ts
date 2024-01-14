@@ -8,6 +8,7 @@ import { join } from 'path';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  app.use(express.json());
   app.use('/files', express.static(join(__dirname, '..', 'files')));
   app.useGlobalPipes(new ValidationPipe());
   app.enableCors();

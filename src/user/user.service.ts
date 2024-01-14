@@ -14,7 +14,7 @@ import { extname } from 'path';
 import * as fs from 'fs/promises';
 
 @Injectable()
-export class UserService {
+export class UserService { 
   constructor(
     @InjectRepository(User)
     private userRepository: Repository<User>,
